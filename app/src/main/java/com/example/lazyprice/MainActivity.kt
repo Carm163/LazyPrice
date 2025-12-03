@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                 val item2CostAt2 = unitPrice2 * item2.weight
                 val overpay = item2CostAt1 - item2CostAt2
                 sb.append("Товар1 выгоднее.\n\n")
-                sb.append(String.format("Товар2 по цене Товара1 стоил бы: %.2f_₽,\nа не: %.2f_₽.\n\n",
+                sb.append(String.format("Товар2 по цене Товара1 \nстоил бы: %.2f_₽,\n_        а не: %.2f_₽.\n\n",
                     item2CostAt1, item2CostAt2))
                 sb.append(String.format("Переплата: %.2f_₽", abs(overpay)))
                 sb.toString()
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
                 val overpay = item1CostAt2 - item1CostAt1
                 sb.append("Товар2 выгоднее.\n\n")
                 sb.append(String.format(
-                    "Товар1 по цене Товара2 стоил бы: %.2f_₽,\nа не: %.2f_₽.\n\n",
+                    "Товар1 по цене Товара2 \nстоил бы: %.2f_₽,\n_        а не: %.2f_₽.\n\n",
                     item1CostAt2, item1CostAt1
                 ))
                 sb.append(String.format("Переплата: %.2f_₽", abs(overpay)))

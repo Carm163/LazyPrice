@@ -115,9 +115,9 @@
             android:layout_width="match_parent"
             android:layout_height="356dp"
             android:lineSpacingExtra="6dp"
-            android:paddingTop="20dp"
+            android:paddingTop="10dp"
             android:text=""
-            android:textSize="22sp" />
+            android:textSize="21sp" />
 
     </LinearLayout>
 </ScrollView>
