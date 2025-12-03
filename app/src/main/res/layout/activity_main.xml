@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp">
@@ -12,24 +13,45 @@
 
         <!-- Заголовок 1 -->
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:paddingBottom="6dp"
-            android:text="Товар 1"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:id="@+id/titleProduct1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Товар 1"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:paddingStart="4dp"/>
+
+            <Button
+                android:id="@+id/resetButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Сброс"
+                android:textSize="16sp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
 
         <EditText
             android:id="@+id/weight1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:textSize="22sp"
-            android:padding="8dp"
+            android:backgroundTint="@android:color/darker_gray"
             android:hint="Вес (г)"
-            android:backgroundTint="@android:color/darker_gray" />
+            android:inputType="numberDecimal"
+            android:padding="8dp"
+            android:textSize="22sp" />
 
         <EditText
             android:id="@+id/price1"
@@ -87,10 +109,11 @@
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 
+
         <TextView
             android:id="@+id/resultText"
             android:layout_width="match_parent"
-            android:layout_height="375dp"
+            android:layout_height="356dp"
             android:lineSpacingExtra="6dp"
             android:paddingTop="20dp"
             android:text=""

@@ -9,6 +9,7 @@ import kotlin.math.abs
 
 class MainActivity : AppCompatActivity() {
 
+    // Функция скрытия клавиатуры
     private fun hideKeyboard() {
         val view = this.currentFocus
         if (view != null) {
@@ -17,18 +18,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Инициализация элементов UI
         val weight1 = findViewById<EditText>(R.id.weight1)
         val price1 = findViewById<EditText>(R.id.price1)
         val weight2 = findViewById<EditText>(R.id.weight2)
         val price2 = findViewById<EditText>(R.id.price2)
         val compareButton = findViewById<Button>(R.id.compareButton)
         val resultText = findViewById<TextView>(R.id.resultText)
+        val resetButton = findViewById<Button>(R.id.resetButton) // Кнопка «Сброс»
 
+        // Обработчик нажатия кнопки «Сравнить»
         compareButton.setOnClickListener {
             hideKeyboard()
             val w1 = weight1.text.toString().replace(',', '.').toDoubleOrNull()
@@ -52,15 +55,32 @@ class MainActivity : AppCompatActivity() {
             val output = comparePrices(item1, item2)
             resultText.text = output
         }
+
+        // Обработчик нажатия кнопки «Сброс»
+        resetButton.setOnClickListener {
+            resetFields()
+        }
     }
 
+    // Функция сброса полей ввода и очистки результата
+    private fun resetFields() {
+        findViewById<EditText>(R.id.weight1).text.clear()
+        findViewById<EditText>(R.id.price1).text.clear()
+        findViewById<EditText>(R.id.weight2).text.clear()
+        findViewById<EditText>(R.id.price2).text.clear()
+        findViewById<TextView>(R.id.resultText).text = ""
+        hideKeyboard()
+    }
+
+    // Класс для хранения данных о товаре
     data class Item(val weight: Double, val price: Double)
 
+    // Расчёт цены за единицу веса
     private fun calculateUnitPrice(weight: Double, price: Double): Double {
         return price / weight
     }
 
-
+    // Сравнение цен и формирование результата
     private fun comparePrices(item1: Item, item2: Item): String {
         val unitPrice1 = calculateUnitPrice(item1.weight, item1.price)
         val unitPrice2 = calculateUnitPrice(item2.weight, item2.price)
@@ -80,7 +100,6 @@ class MainActivity : AppCompatActivity() {
                 sb.append(String.format("Переплата: %.2f_₽", abs(overpay)))
                 sb.toString()
             }
-
             unitPrice1 > unitPrice2 -> {
                 val item1CostAt2 = unitPrice2 * item1.weight
                 val item1CostAt1 = unitPrice1 * item1.weight
@@ -93,7 +112,6 @@ class MainActivity : AppCompatActivity() {
                 sb.append(String.format("Переплата: %.2f_₽", abs(overpay)))
                 sb.toString()
             }
-
             else -> {
                 sb.append("Цены равны.")
                 sb.toString()
